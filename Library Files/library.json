@@ -1,6 +1,6 @@
 {
-  "name": "MyTFT",
-  "version": "1.0.0",
+  "name": "AloniesTFT",
+  "version": "2.0.0",
   "description": "Custom plug-and-play TFT library for MCUFRIEND 320x240 (ILI9341)",
   "keywords": ["TFT", "MCUFRIEND", "graphics", "ESP32", "Arduino"],
   "authors": [
@@ -12,7 +12,9 @@
   ],
   "dependencies": [
     "adafruit/Adafruit GFX Library @ ^1.11.0",
-    "MCUFRIEND_kbv"
+    "MCUFRIEND_kbv",
+    "SD",
+    "Adafruit TouchScreen"
   ],
   "license": "MIT",
   "frameworks": ["arduino"],

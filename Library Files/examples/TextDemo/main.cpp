@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include "MyTFT.h"
+#include "AloniesTFT.h"
 
-MyTFT tft;
+AloniesTFT tft;
 
 void setup() {
     tft.begin();
