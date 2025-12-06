@@ -173,13 +173,32 @@ void loop() {
 
 ## ESP32 Usage
 
-When using this library with an ESP32, you will need to specify the pins for the SD card and touchscreen in the constructor of the respective classes.
+When using this library with an ESP32, you will need to specify the pins for the SD card and touchscreen in the constructor of the respective classes. Additionally, for parallel TFT shields, you must wire the display's data and control pins directly to specific ESP32 GPIOs.
 
-**Default SPI Pins for ESP32 (VSPI)**:
-- **MOSI**: GPIO 23
-- **MISO**: GPIO 19
-- **SCK**: GPIO 18
-- **SS/CS**: GPIO 5
+### Recommended TFT Parallel Pinout for ESP32
+
+These pins are commonly used and avoid most strapping pin issues for general ESP32 development.
+
+| TFT Shield Pin | ESP32 GPIO Pin |
+| :------------- | :------------- |
+| **D0**         | `GPIO 12`      |
+| **D1**         | `GPIO 13`      |
+| **D2**         | `GPIO 26`      |
+| **D3**         | `GPIO 25`      |
+| **D4**         | `GPIO 17`      |
+| **D5**         | `GPIO 16`      |
+| **D6**         | `GPIO 27`      |
+| **D7**         | `GPIO 14`      |
+| **RD** (Read)  | `GPIO 2`       |
+| **WR** (Write) | `GPIO 4`       |
+| **RS** (CD/DC) | `GPIO 15`      |
+| **CS**         | `GPIO 33`      |
+| **RST**        | `GPIO 32`      |
+
+**Important Considerations for ESP32:**
+*   **Power:** Ensure your ESP32 is powered to provide enough current for the TFT.
+*   **SD Card SPI:** The standard ESP32 VSPI (MISO: GPIO 19, MOSI: GPIO 23, SCK: GPIO 18) is generally recommended for the SD card.
+*   **Touchscreen Analog Pins:** If using Wi-Fi, be mindful that ADC2 pins (GPIOs 2, 4, 12-15, 25-27) might be unavailable for analog reads. Prioritize ADC1 pins (GPIOs 32-36, 39).
 
 Here is an example of how to instantiate the classes for an ESP32:
 
@@ -188,11 +207,12 @@ Here is an example of how to instantiate the classes for an ESP32:
 #include <AloniesTFT_SD.h>
 #include <AloniesTFT_Touch.h>
 
-// TFT display object
+// TFT display object - no pins needed for the display itself
 AloniesTFT tft;
 
-// SD card object with ESP32's default VSPI CS pin
-AloniesTFT_SD sdCard(5); 
+// SD card object with a user-defined CS pin (e.g., from your config.h)
+#define SD_CS_PIN 15 // Example: define your actual SD_CS_PIN here
+AloniesTFT_SD sdCard(SD_CS_PIN);
 
 // Touchscreen object with example ESP32 pins
 // Make sure to use ADC1 pins for YP and XM if you are using Wi-Fi
