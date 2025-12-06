@@ -200,6 +200,14 @@ class AloniesTFT {
      */
     void fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color);
 
+    /**
+     * @brief Draws a single pixel.
+     * @param x The x-coordinate.
+     * @param y The y-coordinate.
+     * @param color The color of the pixel.
+     */
+    void drawPixel(int16_t x, int16_t y, uint16_t color);
+
     // Screen Dimensions
     /**
      * @brief Gets the width of the screen.
@@ -228,4 +236,5 @@ class AloniesTFT {
     void drawTrianglesTest(uint16_t color);
 };
 
+#endif
 #endif

@@ -199,3 +199,8 @@ int16_t AloniesTFT::width() {
 int16_t AloniesTFT::height() {
     return tft.height();
 }
+
+void AloniesTFT::drawPixel(int16_t x, int16_t y, uint16_t color) {
+    DEBUG_PRINTLN("Drawing pixel");
+    tft.drawPixel(x, y, color);
+}
