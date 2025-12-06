@@ -18,7 +18,8 @@ bool AloniesTFT_SD::begin() {
     DEBUG_PRINTLN("Initializing SD card...");
     pinMode(_cs_pin, OUTPUT);
 
-    if (!SD.begin(_cs_pin)) {
+    _card_initialized = SD.begin(_cs_pin);
+    if (!_card_initialized) {
         DEBUG_PRINTLN("SD Card initialization failed!");
         return false;
     }
@@ -28,7 +29,7 @@ bool AloniesTFT_SD::begin() {
 
 void AloniesTFT_SD::listFilesInRoot() {
     DEBUG_PRINTLN("Listing files in root directory...");
-    if (!SD.cardInitialized()) {
+    if (!_card_initialized) {
         DEBUG_PRINTLN("SD Card not initialized. Cannot list files.");
         return;
     }
@@ -61,7 +62,7 @@ void AloniesTFT_SD::listFilesInRoot() {
 
 void AloniesTFT_SD::readFile(const char* filename) {
     DEBUG_PRINTLN("Reading file...");
-    if (!SD.cardInitialized()) {
+    if (!_card_initialized) {
         DEBUG_PRINTLN("SD Card not initialized. Cannot read file.");
         return;
     }
@@ -84,7 +85,7 @@ void AloniesTFT_SD::readFile(const char* filename) {
 
 void AloniesTFT_SD::writeFile(const char* filename, const char* content) {
     DEBUG_PRINTLN("Writing to file...");
-    if (!SD.cardInitialized()) {
+    if (!_card_initialized) {
         DEBUG_PRINTLN("SD Card not initialized. Cannot write file.");
         return;
     }

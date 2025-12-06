@@ -6,23 +6,6 @@
 
 #define DEBUG_PRINTLN(x) do { if (_debug_enabled) { Serial.println(x); } } while (0)
 
-// Define the touchscreen pins based on the provided examples
-#define YP A3  // must be an analog pin, use "An" notation!
-#define XM A2  // must be an analog pin, use "An" notation!
-#define YM 9   // can be a digital pin
-#define XP 8   // can be a digital pin
-
-// Touch sensitivity calibration values from the provided examples
-#define TS_MINX 124
-#define TS_MAXX 906
-#define TS_MINY 83
-#define TS_MAXY 893
-
-// For better pressure precision, we need to know the resistance
-// between X+ and X- Use any multimeter to read it
-// For the one we're using, its 300 ohms across the X plate
-#define RX_PLATE 300
-
 class AloniesTFT_Touch {
 public:
     /**
@@ -34,11 +17,6 @@ public:
      * @param rxplate The resistance of the screen.
      */
     AloniesTFT_Touch(uint8_t xp, uint8_t yp, uint8_t xm, uint8_t ym, uint16_t rxplate);
-
-    /**
-     * @brief Construct a new AloniesTFT_Touch object with default pins.
-     */
-    AloniesTFT_Touch();
 
     /**
      * @brief Enables or disables debug mode.

@@ -59,6 +59,7 @@ public:
 private:
     bool _debug_enabled = false;
     uint8_t _cs_pin;
+    bool _card_initialized = false;
 };
 
 #endif // ALONIESTFT_SD_H

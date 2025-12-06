@@ -9,15 +9,6 @@ AloniesTFT_Touch::AloniesTFT_Touch(uint8_t xp, uint8_t yp, uint8_t xm, uint8_t y
     ts = new TouchScreen(_xp, _yp, _xm, _ym, _rxplate);
 }
 
-AloniesTFT_Touch::AloniesTFT_Touch() {
-    _xp = 8;
-    _yp = A3;
-    _xm = A2;
-    _ym = 9;
-    _rxplate = 300;
-    ts = new TouchScreen(_xp, _yp, _xm, _ym, _rxplate);
-}
-
 void AloniesTFT_Touch::setDebug(bool enabled) {
     _debug_enabled = enabled;
 }
